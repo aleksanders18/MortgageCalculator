@@ -93,6 +93,14 @@ body {
   font-weight: 700;
 }
 
+.col-form-label {
+  text-align: right;
+}
+
+.input-group {
+  padding-left: 0%;
+}
+
 /*
  * Footer
  */
