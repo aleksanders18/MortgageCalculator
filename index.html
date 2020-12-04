@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Jekyll v4.1.1" />
+    <title>Mortgage Overpayment Calculator</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.5/examples/cover/"
+    />
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet" />
+  </head>
+
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto" style="margin-top: 2.5%;">
+        <h1 class="masthead-brand">Mortgage Overpayment Calculator</h1>
+      </header>
+
+      <main role="main" class="inner cover" >
+        <form id="mortgageForm" onsubmit="init()">
+          <div class="form-group row">
+            <label for="mortgageValue" class="col-5 col-form-label"
+              >Mortgage Value</label
+            >
+            <div class="input-group col-5">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">£</span>
+              </div>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                class="form-control"
+                id="mortgageValue"
+                placeholder="e.g. 100000"
+                lang="en"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="mortgageLength" class="col-5 col-form-label"
+              >Mortgage Length</label
+            >
+            <div class="input-group col-5">
+              <input
+                type="number"
+                min="1"
+                step="1"
+                onkeydown="if(event.key==='.'){event.preventDefault();}"
+                oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+                class="form-control"
+                id="mortgageLength"
+                placeholder="e.g. 25"
+                required
+              />
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">years</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="interestRate" class="col-5 col-form-label"
+              >Mortgage Value</label
+            >
+            <div class="input-group col-5">
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                class="form-control"
+                id="interestRate"
+                placeholder="e.g. 2.34"
+                required
+              />
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon3">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="startDate" class="col-5 col-form-label"
+              >Start Date</label>
+            <div class="input-group mb-2 col-5">
+              <input
+                type="month"
+                class="form-control"
+                id="startDate"
+                placeholder="dd/mm/yyyy"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="overpaymentType" class="col-5 col-form-label"
+              >Overpayment Type</label
+            >
+            <select class="form-control col-5" id="overpaymentType">
+              <option value="1">Monthly</option>
+              <option value="2">Annual</option>
+              <option value="3">One-off</option>
+            </select>
+          </div>
+          <div class="form-group row">
+            <label for="OverpaymentAmount" class="col-5 col-form-label"
+              >Overpayment Amount</label
+            >
+            <div class="input-group col-5">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">£</span>
+              </div>
+              <input
+                type="number"
+                min="0"
+                class="form-control"
+                id="OverpaymentAmount"
+                placeholder="e.g. 500"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="overpaymentDate" class="col-5 col-form-label"
+              >First Overpayment Date</label
+            >
+            <div class="input-group mb-2 col-5">
+              <input
+                type="month"
+                class="form-control"
+                id="overpaymentDate"
+                placeholder="e.g. January 2022"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-secondary">Calculate Savings</a>
+          </button>
+
+        </form>
+
+        <div id="savings">
+
+        </div>
+
+        <div style="margin-bottom: 25px;"></div>
+        <div id="table-wrapper">
+          <div id="table-scroll">
+            <table id="mortgageTable" class="table table-hover"></table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>
+            Calculator created by
+            <a href="https://www.linkedin.com/in/aleksander-sadiku"
+              >Aleks Sadiku</a
+            >.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript" src="index.js"></script>
